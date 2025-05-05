@@ -1,0 +1,85 @@
+Solved
+Easy
+Topics
+Companies
+Hint
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+Return the merged string.
+Example 1:
+
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+Explanation: The merged string will be merged as so:
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+
+appraoch 1:using sb
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        int w1=0,w2=0;
+        int s1=word1.length();
+        int s2=word2.length();
+        StringBuilder sb=new StringBuilder();
+        while(w1!=s1 && w2!=s2){
+            char ch1=word1.charAt(w1);
+            char ch2=word2.charAt(w2);
+          sb.append(ch1);
+          sb.append(ch2);
+        w1++;
+        w2++;
+        }
+         while(w1!=s1){
+            char ch1=word1.charAt(w1);
+           sb.append(ch1);
+        w1++;
+        }
+         while(w2!=s2){
+            char ch2=word2.charAt(w2);
+            sb.append(ch2);
+        w2++;
+        }
+     
+     String ans=sb.toString();
+  return ans;
+
+
+    }
+}
+approach2:using stack
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        Stack<Character> st=new Stack<>();
+        int w1=0,w2=0;
+        int s1=word1.length();
+        int s2=word2.length();
+        StringBuilder sb=new StringBuilder();
+        while(w1!=s1 && w2!=s2){
+            char ch1=word1.charAt(w1);
+            char ch2=word2.charAt(w2);
+           st.push(ch1);
+           st.push(ch2);
+        w1++;
+        w2++;
+        }
+         while(w1!=s1){
+            char ch1=word1.charAt(w1);
+           st.push(ch1);
+        w1++;
+        }
+         while(w2!=s2){
+            char ch2=word2.charAt(w2);
+           st.push(ch2);
+        w2++;
+        }
+     while(!st.isEmpty()){
+        sb.append(st.pop());
+     }
+     sb.reverse();
+     
+     String ans=sb.toString();
+  return ans;
+
+
+    }
+} 
